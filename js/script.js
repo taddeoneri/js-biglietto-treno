@@ -5,37 +5,47 @@
  va applicato uno sconto del 40% per gli over 65.
  L'output del prezzo finale va messo fuori in forma umana (con massimo due decimali, per indicare centesimi sul prezzo).*/
 
-const nKm = prompt('Inserisci il numero di chilometri');  // con un prompt chiedere all'user di inserire il numero di chilometri
-const age = prompt("Inserisci l'età");                    // con un prompt chiedere all'user di inserire l'età
-const priceTicket = (nKm * 0.21);   //il prezzo del biglietto è uguale al numero di chilometri per 0.21
-let discount;     //inizializzare la variabile per lo sconto
-if(age < 18 && nKm && age && !isNaN(nKm) && !isNaN(age)){    // condizione vera se l'età è minore di 18, se nkm e age non sono vuoti e se nkm e age sono numeri
-    discount = (priceTicket * 20) / 100;            // sconto 20%
-    let finalPrice = priceTicket - discount;        // calcolare il prezzo finale sottraendo lo sconto al prezio iniziale del ticket
-    document.getElementById('user').innerHTML = 
-    `                                                       
-    <h1>The ticket price is: ${finalPrice}$</h1>
-    `;                      // visualizzare a schermo il risultato 
+
+
+// con un prompt chiedere all'user di inserire il numero di chilometri
+const nKm = prompt('Inserisci il numero di chilometri'); 
+// con un prompt chiedere all'user di inserire l'età
+const age = prompt("Inserisci l'età");
+//il prezzo del biglietto è uguale al numero di chilometri per 0.21
+const priceTicket = (nKm * 0.21);
+//inizializzare la variabile per lo sconto
+let discount;
+let finalPrice;
+
+// condizione vera se l'età è minore di 18, se nkm e age non sono vuoti e se nkm e age sono numeri
+if(!isNaN(nKm) && !isNaN(age)){
+    if(age < 18){
+        // sconto 20%
+        discount = (priceTicket * 20) / 100;
+        // calcolare il prezzo finale sottraendo lo sconto al prezio iniziale del ticket
+        finalPrice = priceTicket - discount;
+    }
+    // over 65 sconto del 40%
+    else if (age >= 65){
+        discount = priceTicket * 40 / 100;
+        finalPrice = priceTicket - discount;
+    }
+    // per età comprese tra 18 e 65 anni non c'è lo sconto
+    else{
+        discount = 0;
+        finalPrice = priceTicket - discount;
+    }
+    // dati non validi perché tutte le condizioni non sono vere
 }
-else if (age >= 65 && nKm && age && !isNaN(nKm) && !isNaN(age)){               // over 65 sconto del 40%
-    discount = priceTicket * 40 / 100;
-    let finalPrice = priceTicket - discount;
-    document.getElementById('user').innerHTML = 
-    `
-    <h1>The ticket price is: ${finalPrice}$</h1>
-    `;
-}
-else if(nKm && age && !isNaN(nKm) && !isNaN(age)){      // per età comprese tra 18 e 65 anni non c'è lo sconto
-    discount = 0;
-    const finalPrice = priceTicket - discount;
-    document.getElementById('user').innerHTML = 
-    `
-    <h1>The ticket price is: ${finalPrice}$</h1>
-    `;
-}
-else{               // dati non validi perché tutte le condizioni non sono vere
+else{
     document.getElementById('user').innerHTML = 
     `
     <h1>Enter the data again.</h1>
     `;
 }
+
+// visualizzare a schermo il risultato 
+document.getElementById('user').innerHTML = 
+    `
+    <h1>The ticket price is: ${finalPrice}$</h1>
+    `;
