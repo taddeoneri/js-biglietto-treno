@@ -36,6 +36,12 @@ if(!isNaN(nKm) && !isNaN(age)){
         finalPrice = priceTicket - discount;
     }
     // dati non validi perché tutte le condizioni non sono vere
+    // visualizzare a schermo il risultato 
+    document.getElementById('user').innerHTML = 
+    `
+    <h1>The ticket price is: ${finalPrice}$</h1>
+    `;
+
 }
 else{
     document.getElementById('user').innerHTML = 
@@ -43,9 +49,3 @@ else{
     <h1>Enter the data again.</h1>
     `;
 }
-
-// visualizzare a schermo il risultato 
-document.getElementById('user').innerHTML = 
-    `
-    <h1>The ticket price is: ${finalPrice}$</h1>
-    `;
